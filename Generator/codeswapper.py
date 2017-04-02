@@ -1,27 +1,33 @@
-swap_key = "--codeswapper["
-end_key = "]"
+import re
 
-with open("myblog.html", "r") as file_in:
+swap_pattern = "--codeswapper\[[A-Za-z0-9\._]+\]"
+#end_key = "]"
+
+with open("../TestBlogContent/myblog.html", "r") as file_in:
   core_blog = file_in.read()
 
-first_swap = core_blog.find(swap_key)
-end_swap = core_blog[first_swap+len(swap_key):].find(end_key)
+sections_to_swap = re.findall(swap_pattern, core_blog)
+#print (sections_to_swap)
 
-print (first_swap, end_swap)
 
-section_to_swap = core_blog[first_swap:first_swap+len(swap_key)+end_swap+1]
-print (section_to_swap)
+#first_swap = core_blog.find(swap_key)
+#end_swap = core_blog[first_swap+len(swap_key):].find(end_key)
 
-if first_swap > -1:
-  print ("code to swap!")
-  file_to_swap = (core_blog[first_swap+len(swap_key):first_swap+len(swap_key)+end_swap])
-  print (file_to_swap)
-  with open(file_to_swap, "r") as new_content:
-    new_html = new_content.read()
+#print (first_swap, end_swap)
 
-print (new_html)
+#section_to_swap = core_blog[first_swap:first_swap+len(swap_key)+end_swap+1]
+#print (section_to_swap)
 
-new_blog = core_blog.replace(section_to_swap, new_html)
+#if first_swap > -1:
+#  print ("code to swap!")
+#  file_to_swap = (core_blog[first_swap+len(swap_key):first_swap+len(swap_key)+end_swap])
+#  print (file_to_swap)
+#  with open(file_to_swap, "r") as new_content:
+#    new_html = new_content.read()
 
-with open("new_blog.html", "w") as generated_blog:
-  generated_blog.write(new_blog)
+##print (new_html)
+
+##new_blog = core_blog.replace(section_to_swap, new_html)
+
+##with open("new_blog.html", "w") as generated_blog:
+##  generated_blog.write(new_blog)
