@@ -1,6 +1,7 @@
 from codeswapper import swap_code
 
 import markdown2
+import pdb
 
 
 class Blog:
@@ -18,7 +19,8 @@ class Blog:
     ''' this will build and return html from markdown '''
     with open(self.markdown, "r") as file_to_read:
       data = file_to_read.read()
-    html = markdown2.markdown(data, extras["footnotes"])
+    html = markdown2.markdown(data, extras=["footnotes"])
+    #print (html)
     return html
 
   def add_code_snippets(self):
@@ -26,3 +28,21 @@ class Blog:
     html_in = self.build_blog()
     html_out = swap_code(html_in)
     return html_out
+
+  def generate_blog(self):
+    ''' builds the blog '''
+    #import pdb; pdb.set_trace()
+    success = False
+    try:
+      html_out = self.add_code_snippets()
+      with open(self.markdown.replace(".md", ".html"), "w") as file_to_write:
+        file_to_write.write(html_out)
+      success = True
+    except:
+      pass
+    return success
+
+
+if __name__ == "__main__":
+  myblog = Blog("My Blog", "Programming", "../TestBlogContent/myblog.md", ["../TestBlogContent/test_file.html"])
+  success = myblog.generate_blog()
