@@ -4,6 +4,7 @@ swap_pattern = "--codeswapper\[[A-Za-z0-9\._]+\]"
 file_pattern = "\[[A-Za-z0-9\._]+\]"
 folder_root = "../TestBlogContent/"
 
+# this section is removed if operating against a Blog
 with open("../TestBlogContent/myblog.html", "r") as file_in:
   core_blog = file_in.read()
 
@@ -17,5 +18,6 @@ for section in sections_to_swap:
     new_html = new_content.read()
   new_blog = core_blog.replace(section, new_html)
 
+# no need to write to disk
 with open("{}new_blog.html".format(folder_root), "w") as generated_blog:
   generated_blog.write(new_blog)
