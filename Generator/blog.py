@@ -1,3 +1,5 @@
+from codeswapper import swap_code
+
 import markdown2
 
 
