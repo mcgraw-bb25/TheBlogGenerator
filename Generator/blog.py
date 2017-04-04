@@ -21,6 +21,8 @@ class Blog:
     html = markdown2.markdown(data, extras["footnotes"])
     return html
 
-  def swap_code(self):
+  def add_code_snippets(self):
     ''' this will swap out html with pygment code if necessary '''
-    pass
+    html_in = self.build_blog()
+    html_out = swap_code(html_in)
+    return html_out
