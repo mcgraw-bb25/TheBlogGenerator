@@ -9,7 +9,7 @@ with open("../TestBlogContent/myblog.html", "r") as file_in:
   core_blog = file_in.read()
 
 
-def swap_code(html_in)
+def swap_code(html_in):
   ''' takes basic html blog and adds code section from pygment '''
   sections_to_swap = re.findall(swap_pattern, html_on)
 
